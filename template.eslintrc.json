@@ -1,0 +1,12 @@
+{
+	"extends": [
+		"eslint:recommended",
+		"@armirage/eslint-config-armirage"
+	],
+	"rules": {
+		"prefer-destructuring": ["warn", {"object": true, "array": true}],
+		"spaced-comment": [ "error", "always", { "markers": [ "!","#" ], "exceptions": [ "-", "+", "-+", "*" ] } ],
+		"no-unused-vars": 0,
+		"no-undef": 0
+		}
+}

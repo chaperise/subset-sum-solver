@@ -66,7 +66,7 @@ const sumArray = ( array ) => {
  * @function formatHTML
  * @param {!Array.<string>} subsetArray - Array of strings format "number^index".
  * @param {!Array.<numbers>} inputArray - Original array of numbers sorted in ascending order.
- * @return {DOMError.<fragment>} Fragment of HTML for insertion in DOM.
+ * @return {Object.<fragment>} Fragment of HTML for insertion in DOM.
  */
 
 // ANCHOR function expression

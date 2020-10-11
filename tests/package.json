@@ -1,0 +1,13 @@
+{
+  "name": "test-subsets",
+  "version": "1.0.0",
+  "description": "test package to test release build",
+  "browser": "index.js",
+  "scripts": {},
+  "author": "Clint Mulligan",
+  "license": "BSD-3-Clause",
+  "dependencies": {},
+  "devDependencies": {
+    "@armirage/subset-sum-solver": "file:../release"
+  }
+}

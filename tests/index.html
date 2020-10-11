@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Subset Sum Solver</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+	<style>
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 20px;
+			margin-top: 15px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+
+<body>
+<br>
+	<h1>Subset Sum Solver</h1>
+
+	<button id="button">FIND THEM ALL!</button>
+
+	<noscript>Sorry, your browser does not support JavaScript!</noscript>
+
+	<script type="module">
+		import { returnSolutions } from "./node_modules/@armirage/subset-sum-solver/index.js";
+		let multiset = [ 1, 2, 3, 4, 5 ];
+		let target = 7;
+
+	
+	function displayOutput() {
+
+		let settings = {
+			"removeDuplicates": false,
+			"removeZeroes": true,
+			"returnHTML": false,
+			"returnRaw": false,
+			"returnSubsets": true,
+			"returnTime": true,
+			"uniqueTarget": true
+		};
+
+		const reply = returnSolutions(target, multiset, settings);
+
+		console.log("Time:", reply.time);
+		console.log(reply.subsets.map(array => array.join(",")));
+
+		displaySubsetsThatSumTo(target, multiset);
+	}
+
+
+	/*! CooManCoo
+		https://stackoverflow.com/questions/18305843/find-all-subsets-that-sum-to-a-particular-value/30222026
+	!*/
+
+	function displaySubsetsThatSumTo(target, numbers) {
+		let wheel = [0];
+		let resultsCount = 0;
+		let sum = 0;
+
+		const start = new Date();
+		do {
+			sum = incrementWheel(0, sum, numbers, wheel);
+			//Use subtraction comparison due to javascript float imprecision
+			if (sum != null && Math.abs(target - sum) < 0.000001) {
+				//Found a subset. Display the result.
+				console.log(numbers.filter(function (num, index) {
+					return wheel[index] === 1;
+				}).join(' + ') + ' = ' + target);
+				resultsCount++;
+			}
+		} while (sum != null);
+		const end = new Date();
+
+		console.log('--------------------------');
+		console.log(`Processed ${numbers.length} numbers in ${(end - start) / 1000} seconds (${resultsCount} results)`);
+	}
+
+	function incrementWheel(position, sum, numbers, wheel) {
+		if (position === numbers.length || sum === null) {
+			return null;
+		}
+		wheel[position]++;
+		if (wheel[position] === 2) {
+			wheel[position] = 0;
+			sum -= numbers[position];
+			if (wheel.length < position + 2) {
+				wheel.push(0);
+			}
+			sum = incrementWheel(position + 1, sum, numbers, wheel);
+		}
+		else {
+			sum += numbers[position];
+		}
+		return sum;
+	}
+
+document.getElementById("button").addEventListener( "click", displayOutput );
+
+	</script>
+</body>
+
+</html>

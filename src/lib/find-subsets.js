@@ -84,7 +84,7 @@ function findSubsets( target, multiset ) {
 	let processes = 0;
 
 	// To test efficiency uncomment deadBranches related code. (3 places)
-	// const deadBranches = [];
+	//! const deadBranches = [];
 
 	// Sorting the inputArray is a performance overhead. Preferably I would like
 	// to remove it but it is necessary for the maths to work.
@@ -117,6 +117,14 @@ function findSubsets( target, multiset ) {
 	findChildren( target, spread );
 
 	// ANCHOR Recursive function
+	/**
+ 	* @function findChildren
+ 	* @param {!number} target - Target number every subset should add up to.
+ 	* @param {!number} _sgn - Spread from negatives (opposite sign group).
+	* @param {Array.<string>} [branch = []] - Empty array to store subsets as they are constructed.
+	* @param {Array.<number>} [ignoreIndexes = []] - Empty array to store indexes to be ignored on each pass.
+	* @return {Array.<string>} Pushes results to const container.
+ 	*/
 	function findChildren( target, _sgn, branch = [], ignoreIndexes = []) {
 
 		// ANCHOR Main loop
@@ -139,7 +147,7 @@ function findSubsets( target, multiset ) {
 			// It also the last stop for branches that can not complete.
 			// To test efficiency uncomment deadBranches.
 			if ( index === 0 && number !== target ) {
-			//	deadBranches.push( branch );
+			//!	deadBranches.push( branch );
 				processes--;
 				break;
 			}
@@ -186,7 +194,7 @@ function findSubsets( target, multiset ) {
 	}
 
 	// ANCHOR findSubsets output
-	// console.log( "Dead branches:", deadBranches.length );
+	//! console.log( "Dead branches:", deadBranches.length );
 
 	// Array of strings format number value and multiplicity: "number^index".
 	// An external function will render the index as multiplicity. (presentation)

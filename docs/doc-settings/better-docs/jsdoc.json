@@ -1,0 +1,45 @@
+{
+	"tags": {
+		"allowUnknownTags": true
+	},
+	"plugins": [
+		"plugins/markdown",
+		"jsdoc-mermaid",
+		"node_modules/better-docs/category"
+	],
+	"opts": {
+		"encoding": "utf8",
+		"destination": "./docs/Technical",
+		"readme": "./README.md",
+		"recurse": true,
+		"verbose": true,
+		"template": "better-docs"
+	},
+	"templates": {
+		"cleverLinks": false,
+		"monospaceLinks": false,
+		"search": true,
+		"default": {
+			"staticFiles": {
+				"include": []
+			}
+		},
+		"better-docs": {
+			"name": "Armirage Subset Sum Solver",
+			"logo": "https://raw.githubusercontent.com/armirage/armirage.github.io/master/images/logos/armirage-logo.png",
+			"title": "Subset Sum Solver",
+			"css": "../doc-settings/better-docs/better-docs-style.css",
+			"hideGenerator": false,
+			"navLinks": [
+				{
+					"label": "Github",
+					"href": "https://github.com/armirage/subset-sum-solver"
+				},
+				{
+					"label": "Webapp Example",
+					"href": "https://armirage.github.io/subset-sum-solver/"
+				}
+			]
+		}
+	}
+}

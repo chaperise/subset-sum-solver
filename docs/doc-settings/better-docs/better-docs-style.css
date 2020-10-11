@@ -1,0 +1,25 @@
+#main > .sidebar {
+width: 300px;
+}
+
+.image img {
+  float: left;
+  width: 50px;
+}
+
+.top-nav h1 {
+  font-size: 30px;
+  font-weight: bold;
+  width: 800px;
+  display: block;
+}
+
+pre code {
+  tab-size: 8;
+  -moz-tab-size: 2;
+}
+
+.description:after {
+  content: "\a";
+  white-space: pre;
+}
