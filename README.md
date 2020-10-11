@@ -87,8 +87,6 @@ As it builds a tree of child nodes each branch represents a subset that solves f
 
 It saves space by referring to an associative array of the inputs and their relative value. Each iteration is looking at the same object in memory.
 
-The Math can be done by hand. For more details, see [The Maths](#the-maths)
-
 O(N log N) time is misleading. Any subset sum algorithm can be given a set that slows its performance to the same speed as regular combination finding.
 
 A zero can be inserted into any and all subsets with out incident. Having one zero in the inputs doubles all branches. Having two, quadruples the branches. Because the output will be the normal branches, all the normal branches plus one zero, all branches plus the other zero, and finally all branches plus both zeroes.
