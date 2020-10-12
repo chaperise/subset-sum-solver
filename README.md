@@ -77,8 +77,9 @@ This Branch-and-Bound technique with early Pruning, is a recursive formula. Mean
 
 Each iteration of the function looks at each number in the array and asks 3 simple questions.
 * Does this number match the target? If 'yes' take the number and complete a subset.\
-  or
+  	OR
 * Is this number "Not Too Big"?
+	AND
 * Is this number "Not Too Small"?
 
 If yes to both of those, take the number and subtract it from the target. Creating a new target to solve for.
