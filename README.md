@@ -44,6 +44,7 @@
 ## Table of Contents
 - [About](#about)
 - [Install](#install)
+	- [Github Clone](#github-clone)
 - [Usage](#usage)
 - [Options](#options)
 	- [removeDuplicates](#removeduplicates)
@@ -127,6 +128,26 @@ To install, run the following in the terminal.
 npm install @armirage/subset-sum-solver --save-dev
 ```
 * :pencil: NOTE: The plugin is a scoped npm package and will need to be referenced that way.
+
+To complete installation See [Usage](#usage).
+
+### Github Clone
+
+If you are starting with the Github download, run in the terminal.
+
+```console
+npm install
+npm run build:release
+```
+The "build:release" script will create documentation in `docs` folder, a `release` folder and files.
+
+Then from with in the `tests` folder run the follow commands:
+```console
+npm install
+http-server
+```
+
+The webpage must be requested from a server. I use [http-server](https://www.npmjs.com/package/http-server) for development.
 
 To complete installation See [Usage](#usage).
 
