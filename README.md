@@ -44,6 +44,7 @@
 ## Table of Contents
 - [About](#about)
 - [Install](#install)
+	- [NPM](#npm)
 	- [Github Clone](#github-clone)
 - [Usage](#usage)
 - [Options](#options)
@@ -121,7 +122,7 @@ There is consistent trend of 120-140 random number inputs to take a minute to so
 Right now it is for general purpose. For more info on increasing performance, see [How to Optimize](#how-to-optimize).
 
 ## Install
-
+### NPM
 To install, run the following in the terminal.
 
 ```console
@@ -132,14 +133,17 @@ npm install @armirage/subset-sum-solver --save-dev
 To complete installation See [Usage](#usage).
 
 ### Github Clone
-
 If you are starting with the Github download, run in the terminal.
 
 ```console
 npm install
+npm run patch:better-docs
+grunt
 npm run build:release
 ```
-The "build:release" script will create documentation in `docs` folder, a `release` folder and files.
+The "patch:better-docs" script fixes an issue with JSDocs template "better-docs" for linux machines.
+The grunt script runs a comment remover and builds documentation.
+The "build:release" will finish making the release script.
 
 Then from with in the `tests` folder run the follow commands:
 ```console
