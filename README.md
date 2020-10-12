@@ -139,18 +139,17 @@ If you are starting with the Github download, run in the terminal.
 ```console
 npm install
 npm run patch:better-docs
-grunt
 npm run build:release
 ```
 The "patch:better-docs" script fixes an issue with JSDocs template "better-docs" for linux machines.
-The grunt script runs a comment remover and builds documentation.
-The "build:release" will finish making the release script.
+The "build:release" will make the `release` folder.
 
 Then from with in the `tests` folder run the follow commands:
 ```console
 npm install
 http-server
 ```
+Tests are ran from a release build.
 
 The webpage must be requested from a server. I use [http-server](https://www.npmjs.com/package/http-server) for development.
 
