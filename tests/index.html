@@ -29,18 +29,25 @@
 	<button id="button">FIND THEM ALL!</button>
 
 	<noscript>Sorry, your browser does not support JavaScript!</noscript>
-
 	<script type="module">
 		import { returnSolutions } from "./node_modules/@armirage/subset-sum-solver/index.js";
-		let multiset = [ 1, 2, 3, 4, 5 ];
-		let target = 7;
+
+	//	let multiset = [-0.47, -0.35, -0.19, 0.23, 0.36, 0.47, 0.51, 0.59, 0.63, 0.79, 0.85, 0.91, 0.99, 1.02, 1.17, 1.25, 1.39, 1.44, 1.59, 1.60, 1.79, 1.88, 1.99, 2.14, 2.31];
+	//	let target = 24.16;
+
+	//	let multiset = [22, -65, -20, -97, 88, 41, -50, 74, -8, -46, -57, 58, 21, 17, 45, 13, 97, -78, 3, -11];
+	//	let target = 0;
+
+		let multiset = Array.from({length: 15}, () => Math.floor(Math.random() * 201) -100);
+	//  let multiset = []
+		let target = 0;
 
 	
 	function displayOutput() {
 
 		let settings = {
 			"removeDuplicates": false,
-			"removeZeroes": true,
+			"removeZeroes": false,
 			"returnHTML": false,
 			"returnRaw": false,
 			"returnSubsets": true,
@@ -48,14 +55,14 @@
 			"uniqueTarget": true
 		};
 
+		console.log(multiset)
+
 		const reply = returnSolutions(target, multiset, settings);
 
 		console.log("Time:", reply.time);
 		console.log(reply.subsets.map(array => array.join(",")));
 
-		displaySubsetsThatSumTo(target, multiset);
-	}
-
+	  displaySubsetsThatSumTo(target, multiset);
 
 	/*! CooManCoo
 		https://stackoverflow.com/questions/18305843/find-all-subsets-that-sum-to-a-particular-value/30222026

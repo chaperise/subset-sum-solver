@@ -76,7 +76,7 @@ export { returnSolutions };
  * @return {Object} Object containing different formats of the subset solutions.
  */
 // ANCHOR Function expression
-const returnSolutions = ( target, inputArray, inputOptions = {}) => {
+const returnSolutions = ( target, inputArray, inputOptions = {}, terms = undefined ) => {
 
 	// ANCHOR Default Options
 	const defaultOptions = {
@@ -127,7 +127,7 @@ const returnSolutions = ( target, inputArray, inputOptions = {}) => {
 	// Depending on options alter results before appending to returnObject.
 	if ( options.returnTime !== true ) {
 
-		results = findSubsets( target, inputArray );
+		results = findSubsets( target, inputArray, terms );
 	} else {
 
 		// ANCHOR options.returnTime
@@ -135,7 +135,7 @@ const returnSolutions = ( target, inputArray, inputOptions = {}) => {
 		// security exploits.
 		/** @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Performance/now | Reduced time precision} */
 		const t0 = performance.now();
-		results = findSubsets( target, inputArray );
+		results = findSubsets( target, inputArray, terms );
 		const t1 = performance.now();
 
 		returnObject["time"] = `${( t1 - t0 ) / 1000} seconds`;

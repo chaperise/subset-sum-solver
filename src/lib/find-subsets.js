@@ -78,10 +78,9 @@ export { findSubsets };
  * "number^index,number^index", of subset solutions.
  */
 // ANCHOR function declaration
-function findSubsets( target, multiset ) {
+function findSubsets( target, multiset, terms ) {
 
 	const container = [];
-	let processes = 0;
 
 	// To test efficiency uncomment deadBranches related code. (3 places)
 	//! const deadBranches = [];
@@ -126,6 +125,7 @@ function findSubsets( target, multiset ) {
 	* @return {Array.<string>} Pushes results to const container.
  	*/
 	function findChildren( target, _sgn, branch = [], ignoreIndexes = []) {
+		const hasTerms = terms > 0 ? true : false;
 
 		// ANCHOR Main loop
 		for ( let index = multiset.length; index--; ) {
@@ -138,8 +138,8 @@ function findSubsets( target, multiset ) {
 			const number = multiset[index];
 
 			// ANCHOR Maths
-			let bigEnough = number >= 0 ? Math.abs( number ) <= Math.abs( target - spread ) : Math.abs( number ) <= Math.abs( target );
-			let smallEnough = number >= 0 ? relArray[index] >= target : Math.round(( relArray[index] - target ) * 1e12 ) / 1e12 >= target;
+			let bigEnough = number >= 0 ? Math.round(( number + _sgn ) * 1e12 ) / 1e12 : number >= target;
+			let smallEnough = number >= 0 ? relArray[index] >= target : relArray[index] <= target;
 
 			// ANCHOR Break early last index
 			// If the number is the smallest number it is either the target or already
@@ -148,15 +148,23 @@ function findSubsets( target, multiset ) {
 			// To test efficiency uncomment deadBranches.
 			if ( index === 0 && number !== target ) {
 			//!	deadBranches.push( branch );
-				processes--;
 				break;
 			}
 
 			// ANCHOR Exact match to target
 			if ( number === target ) {
+				// Do not accept anything that will not fulfill term limit.
+				if ( hasTerms && branch.length !== terms - 1 ) {
+					break;
+				}
 				let subset = [ ...branch ];
 				subset.push( `${multiset[index]}^${index}` );
 				container.push( subset.join( "," ));
+			}
+
+			// Stop processing things above term limit.
+			if ( hasTerms && branch.length > terms - 1 ) {
+				break;
 			}
 
 			// ANCHOR Select child that is Not Too Big or Too Small
@@ -165,7 +173,6 @@ function findSubsets( target, multiset ) {
 			if ( bigEnough && smallEnough ) {
 
 				// Child found. Push to current branch, change state, and call function again.
-				// `${index}`
 				let newTarget = Math.round(( target - number ) * 1e12 ) / 1e12;
 
 				let newIgnore = [ ...ignoreIndexes ];

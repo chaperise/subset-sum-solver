@@ -1,6 +1,6 @@
 {
   "name": "@armirage/subset-sum-solver",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The Fastest and Smallest Subset finder. Finds all subsets from an array that equal a target number. In  O(N log N) time and 2N+2 Space.",
   "keywords": [
     "armirage",

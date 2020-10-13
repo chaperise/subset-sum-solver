@@ -48,6 +48,7 @@
 	- [Github Clone](#github-clone)
 - [Usage](#usage)
 - [Options](#options)
+	- [Select for Terms](#select-for-terms)
 	- [removeDuplicates](#removeduplicates)
 	- [removeZeroes](#removezeroes)
 	- [returnHTML](#returnhtml)
@@ -78,7 +79,7 @@ This Branch-and-Bound technique with early Pruning, is a recursive formula. Mean
 Each iteration of the function looks at each number in the array and asks 3 simple questions.
 * Does this number match the target? If 'yes' take the number and complete a subset.\
   	OR
-* Is this number "Not Too Big"?\
+* Is this number "Not Too Big"?
 	AND
 * Is this number "Not Too Small"?
 
@@ -190,6 +191,22 @@ function displayOutput() {
 ## Options
 
 *\* Any Option not passed to the returnSolutions function will use its default value.*
+### Select for Terms
+findSubsets function now has an optional parameter, terms. The function will cease work on branches longer than the desired limit. Greatly reducing time to results. It is an optional argument, undefined by default.\
+
+To use:
+
+```javascript
+let settings = {
+	"returnHTML": true
+}
+
+let terms = 4;
+
+let reply = returnSolutions( target, inputArray, settings, 4);
+
+document.getElementById( "outputDiv" ).appendChild( reply.html );
+```
 
 ### removeDuplicates
 Type: `Boolean`\
