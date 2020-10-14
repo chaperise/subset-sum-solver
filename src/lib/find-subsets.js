@@ -109,11 +109,11 @@ function findSubsets( target, multiset, terms ) {
 	// The Math is a Greedy heuristic. It attempts to take the biggest value for a child node.
 	// Therefore, the spread is usually the biggest negative's relativity not taken already or 0 max.
 	// We get the initial and subtract negatives as we grab children nodes. See inside the main loop.
-	// const min = Math.min( ...relArray );
-	let spread = Math.min( ...relArray ) < 0 ? Math.min( ...relArray ) : 0;
+	let _sgn = Math.min( ...relArray ) < 0 ? Math.min( ...relArray ) : 0;
+	let sgn = Math.max( ...relArray ) > 0 ? Math.max( ...relArray ) : 0;
 
 	// ANCHOR Begin recursion and building tree
-	findChildren( target, spread );
+	findChildren( target, _sgn, sgn );
 
 	// ANCHOR Recursive function
 	/**
@@ -124,7 +124,7 @@ function findSubsets( target, multiset, terms ) {
 	* @param {Array.<number>} [ignoreIndexes = []] - Empty array to store indexes to be ignored on each pass.
 	* @return {Array.<string>} Pushes results to const container.
  	*/
-	function findChildren( target, _sgn, branch = [], ignoreIndexes = []) {
+	function findChildren( target, _sgn, sgn, branch = [], ignoreIndexes = []) {
 		const hasTerms = terms > 0 ? true : false;
 
 		// ANCHOR Main loop
@@ -137,8 +137,10 @@ function findSubsets( target, multiset, terms ) {
 
 			const number = multiset[index];
 
+			let spread = number >= 0 ? _sgn : sgn;
+
 			// ANCHOR Maths
-			let bigEnough = number >= 0 ? Math.round(( number + _sgn ) * 1e12 ) / 1e12 : number >= target;
+			let bigEnough = number >= 0 ? Math.round(( number + spread ) * 1e12 ) / 1e12 <= target : number >= target;
 			let smallEnough = number >= 0 ? relArray[index] >= target : relArray[index] <= target;
 
 			// ANCHOR Break early last index
@@ -148,6 +150,10 @@ function findSubsets( target, multiset, terms ) {
 			// To test efficiency uncomment deadBranches.
 			if ( index === 0 && number !== target ) {
 			//!	deadBranches.push( branch );
+				break;
+			}
+
+			if ( !smallEnough ) {
 				break;
 			}
 
@@ -183,15 +189,17 @@ function findSubsets( target, multiset, terms ) {
 				newBranch.push( `${multiset[index]}^${index}` );
 
 				// Adjust spread (which is opposite sign group) if negative number is taken as child.
-				let newSpread = _sgn;
+				let newSgn = sgn;
+				let new_Sgn = _sgn;
 
 				if ( number < 0 ) {
-					newSpread = Math.round(( _sgn - number ) * 1e12 ) / 1e12;
+					new_Sgn = Math.round(( _sgn - number ) * 1e12 ) / 1e12;
+				} else {
+					newSgn = Math.round(( sgn - number ) * 1e12 ) / 1e12;
 				}
 
 				// Run with new state
-				// setTimeout( findChildren( newTarget, newSpread, newBranch, newIgnore ), 0 );
-				findChildren( newTarget, newSpread, newBranch, newIgnore );
+				findChildren( newTarget, new_Sgn, newSgn, newBranch, newIgnore );
 			}
 
 			// If the number was Too big or small on this iteration it will likely be
