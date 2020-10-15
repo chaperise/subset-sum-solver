@@ -5,7 +5,7 @@
 	<title>Subset Sum Solver - A fast and small subset sum solver (finder). Given a multiset (or set) of positive, negative, or decimal numbers SSP Solver will find all solution subsets that equal a target number. From Armirage OSS.</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-	<meta name="title" content="Subset Sum Solver - v1.0.3">
+	<meta name="title" content="Subset Sum Solver">
 	<meta name="author" content="Clint Mulligan">
 	<meta name="subject" content="Given a multiset or set of positive, negative, or decimal numbers; this JavaScript code will find all subsets that equal the target. Super fast and small.">
 	<meta name="description" content="Test run the Subset Sum Solver yourself on this example webpage. The Math and code will execute within your browser on your machine.">
@@ -70,6 +70,16 @@
 				pattern="^-?[0-9]\d*(\.\d+)?$"
 				placeholder="Enter a number."
 				required>
+			<br>
+
+			<label for="inputTarget">(Optional) Limit by Terms*</label>
+			<input
+				id="inputTerms"
+				name="input-terms"
+				title="Enter a number (positive)."
+				pattern="^[1-9]\d*$"
+				placeholder="Enter a positive number.">
+				<p>* Will return only subsets as long as the term limit set. For all subsets leave blank.</p>
 			<br>
 
 			<label for="inputTarget">Options</label>
