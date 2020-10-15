@@ -39,7 +39,6 @@
 	//	let target = 0;
 
 		let multiset = Array.from({length: 15}, () => Math.floor(Math.random() * 201) -100);
-	//  let multiset = []
 		let target = 0;
 
 	
@@ -60,7 +59,7 @@
 		const reply = returnSolutions(target, multiset, settings);
 
 		console.log("Time:", reply.time);
-		console.log(reply.subsets.map(array => array.join(",")));
+		console.log(reply.subsets);
 
 	  displaySubsetsThatSumTo(target, multiset);
 
