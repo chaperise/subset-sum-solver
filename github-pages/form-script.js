@@ -30,7 +30,9 @@ function displayOutput() {
 	// Make form input for target a number.
 	let target = Number( form.inputTarget.value );
 
-	const reply = returnSolutions( target, multiset, settings );
+	let inputTerms = Number( form.inputTerms.value ) === "" ? inputTerms = undefined : Number( form.inputTerms.value );
+
+	const reply = returnSolutions( target, multiset, settings, inputTerms );
 
 	function appendOutput( label, contents ) {
 		// create Header.
