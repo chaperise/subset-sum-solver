@@ -26,14 +26,7 @@
 </head>
 
 <body onload="defaultValues()">
-	<!-- Armirage OSS Header -->
-	<div align="right">
-		<a href="https://armirage.github.io" target="_blank" rel="noopener">
-			<img src="https://armirage.github.io/images/banners/armirage-oss-header.webp" alt="Armirage OSS Header. The Armirage logo; A person icon wrapped in a leaf forming an 'A'. Armirage name and a tilted rubber stamp of approval with the letters 'OSS' cover the rightmost corner." width="160px">
-		</a>
-	</div>
-
-	<h1>Subset Sum Solver</h1>
+	<h1>bottom text</h1>
 
 	<sup><em>@armirage/</em></sup>subset-sum-solver&nbsp;&nbsp;
 	<a href="https://www.npmjs.com/package/@armirage/subset-sum-solver" alt="npm package link" target="_blank">
@@ -53,20 +46,20 @@
 			<textarea
 				id="inputCSV"
 				name="input-csv"
-				title="Enter each number (positive, negative, or decimal) followed by a comma &quot;,&quot;."
+				title="Enter each damage value (positive integer only) followed by a comma &quot;,&quot;."
 				pattern="[A-Za-z]{3}"
-				placeholder="Enter a comma separated list of numbers ex: (1,2,3,...)"
+				placeholder="Enter a comma separated list of damage values ex: (1,2,3,69,...)"
 				style="height:5em"
 				required>
 			</textarea>
-			<p>* By default zeroes and duplicates of the target are removed from this list. (see documentation for further details.)</p>
-			<p>* There is no way this website can test the performance of your machine to run this recursive function. Some inputs will freeze your machine. Continue at your own risk.</p>
+			<p>* by default zeroes and duplicates of the target are removed from this list.</p>
+			<p>* if you put more than like 10 values javascript will do the funny and probably freeze, so make sure not to go overboard.</p>
 
 			<label for="inputTarget">Target Sum</label>
 			<input
 				id="inputTarget"
 				name="input-target"
-				title="Enter a number (positive, negative, or decimal)."
+				title="Enter a number (positive integers only)."
 				pattern="^-?[0-9]\d*(\.\d+)?$"
 				placeholder="Enter a number."
 				required>
